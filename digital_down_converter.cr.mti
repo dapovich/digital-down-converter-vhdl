@@ -1,4 +1,4 @@
-C:/bin/design/projects/vhdl/Digitaldown_converter/src/fir_filter.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/bin/design/projects/vhdl/Digitaldown_converter/src/fir_filter.vhd
+C:/bin/design/projects/vhdl/Digitaldown_converter/src/fir_filter.vhd {1 {vcom -work work -2002 -explicit -stats=none {C:\bin\design\projects\vhdl\Digitaldown_converter\src\fir_filter.vhd}
 Model Technology ModelSim ALTERA vcom 10.3c Compiler 2014.09 Sep 20 2014
 -- Loading package STANDARD
 -- Loading package TEXTIO
@@ -7,7 +7,7 @@ Model Technology ModelSim ALTERA vcom 10.3c Compiler 2014.09 Sep 20 2014
 -- Compiling entity fir_filter
 -- Compiling architecture rtl of fir_filter
 
-} {} {}} C:/bin/design/projects/vhdl/Digitaldown_converter/src/dds.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/bin/design/projects/vhdl/Digitaldown_converter/src/dds.vhd
+} {} {}} C:/bin/design/projects/vhdl/Digitaldown_converter/src/dds.vhd {1 {vcom -work work -2002 -explicit -stats=none {C:\bin\design\projects\vhdl\Digitaldown_converter\src\dds.vhd}
 Model Technology ModelSim ALTERA vcom 10.3c Compiler 2014.09 Sep 20 2014
 -- Loading package STANDARD
 -- Loading package TEXTIO
@@ -16,16 +16,7 @@ Model Technology ModelSim ALTERA vcom 10.3c Compiler 2014.09 Sep 20 2014
 -- Compiling entity dds
 -- Compiling architecture rtl of dds
 
-} {} {}} C:/bin/design/projects/vhdl/Digitaldown_converter/src/hf_generator.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/bin/design/projects/vhdl/Digitaldown_converter/src/hf_generator.vhd
-Model Technology ModelSim ALTERA vcom 10.3c Compiler 2014.09 Sep 20 2014
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Loading package NUMERIC_STD
--- Compiling entity hf_generator
--- Compiling architecture rtl of hf_generator
-
-} {} {}} C:/bin/design/projects/vhdl/Digitaldown_converter/src/testbench.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/bin/design/projects/vhdl/Digitaldown_converter/src/testbench.vhd
+} {} {}} C:/bin/design/projects/vhdl/Digitaldown_converter/src/testbench.vhd {1 {vcom -work work -2002 -explicit -stats=none {C:\bin\design\projects\vhdl\Digitaldown_converter\src\testbench.vhd}
 Model Technology ModelSim ALTERA vcom 10.3c Compiler 2014.09 Sep 20 2014
 -- Loading package STANDARD
 -- Loading package TEXTIO
@@ -34,7 +25,16 @@ Model Technology ModelSim ALTERA vcom 10.3c Compiler 2014.09 Sep 20 2014
 -- Compiling entity testbench
 -- Compiling architecture rtl of testbench
 
-} {} {}} C:/bin/design/projects/vhdl/Digitaldown_converter/src/dpROM12.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/bin/design/projects/vhdl/Digitaldown_converter/src/dpROM12.vhd
+} {} {}} C:/bin/design/projects/vhdl/Digitaldown_converter/src/hf_generator.vhd {1 {vcom -work work -2002 -explicit -stats=none {C:\bin\design\projects\vhdl\Digitaldown_converter\src\hf_generator.vhd}
+Model Technology ModelSim ALTERA vcom 10.3c Compiler 2014.09 Sep 20 2014
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity hf_generator
+-- Compiling architecture rtl of hf_generator
+
+} {} {}} C:/bin/design/projects/vhdl/Digitaldown_converter/src/dpROM12.vhd {1 {vcom -work work -2002 -explicit -stats=none {C:\bin\design\projects\vhdl\Digitaldown_converter\src\dpROM12.vhd}
 Model Technology ModelSim ALTERA vcom 10.3c Compiler 2014.09 Sep 20 2014
 -- Loading package STANDARD
 -- Loading package TEXTIO
