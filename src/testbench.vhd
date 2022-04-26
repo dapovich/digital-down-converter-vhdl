@@ -3,8 +3,8 @@
 --  Description : Testbench of DDS sine generation
 ------------------------------------------------------------------
 library ieee;
-use ieee.std_logic_1164.all;
-use ieee.numeric_std.all;
+    use ieee.std_logic_1164.all;
+    use ieee.numeric_std.all;
 
 entity testbench is
 end entity testbench;
@@ -47,16 +47,16 @@ architecture rtl of testbench is
 
   -- HF generator signal
   -- Phs_inc = (Fout * 2^32)/Fclk
-  -- For Fout = 725 kHz and Fo = 1 MHz
+  -- For Fout = 725 kHz and Fo = 5 MHz
   -- tbPhsInc_hf = x"03B645A1"
-  -- tbPhsInc = x"051EB851"
+  -- tbPhsInc = x"1999_9999"
   -- FIR filter should has more less Amplitude Characteristic
 
   signal tbPhsInc_hf : std_logic_vector(31 downto 0) := x"03B645A1";
   signal tbOutHfSignal : std_logic_vector(15 downto 0);
 
   -- Phase accumulator signals of DDS
-  signal tbPhsInc : std_logic_vector(31 downto 0) := x"19999999";
+  signal tbPhsInc : std_logic_vector(31 downto 0) := x"03B645A1";
   signal tbStep   : std_logic_vector(31 downto 0) := (others => '0');
 
   -- Input signals
@@ -70,9 +70,6 @@ architecture rtl of testbench is
   -- Output signals of I and Q filter
   signal tbOutFilterQ : std_logic_vector(49 downto 0);
   signal tbOutFilterI : std_logic_vector(49 downto 0);
-
-  -- Output quadrature signal
-  signal tbOutQuadratureSignal : std_logic_vector(49 downto 0);
 
   -- Internal testbench clock with 50 MHz frequency
   constant CLK_PERIOD : time := 20 ns;
@@ -130,8 +127,10 @@ begin
   -- Format Q quadrature component
   tbInFilterQ <= std_logic_vector(signed(tbOutHfSignal) * signed(tbSin));
 
-  -- The sum of two I/Q quadrature
-  tbOutQuadratureSignal <= std_logic_vector(signed(tbOutFilterI) + signed(tbOutFilterQ));
+  --tbRealI <= real(to_integer(signed(tbOutFilterI)));
+  --tbRealQ <= real(to_integer(signed(tbOutFilterQ)));
+  --tbOutQuadratureReal <= sqrt(tbRealI**2 + tbRealQ**2);
+  --tbOutQuadratureSignal <= std_logic_vector(to_unsigned(integer(tbOutQuadratureReal), tbOutQuadratureSignal'length));
 
   -- @Goal: generate the clock & reset
   tbClk <= not(tbClk) after (CLK_PERIOD/2);
