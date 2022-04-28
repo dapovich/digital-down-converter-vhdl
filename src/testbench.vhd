@@ -27,7 +27,7 @@ architecture rtl of testbench is
       I_CLK    : in std_logic;
       I_RST    : in std_logic;
       I_FILTER : in std_logic_vector(31 downto 0);
-      O_FILTER : out std_logic_vector(49 downto 0)
+      O_FILTER : out std_logic_vector(47 downto 0)
     );
   end component;
 
@@ -47,16 +47,16 @@ architecture rtl of testbench is
 
   -- HF generator signal
   -- Phs_inc = (Fout * 2^32)/Fclk
-  -- For Fout = 725 kHz and Fo = 5 MHz
-  -- tbPhsInc_hf = x"03B645A1"
+  -- For Fout = 1 MHz and Fo = 5 MHz
+  -- tbPhsInc_hf = x"051EB851"
   -- tbPhsInc = x"1999_9999"
   -- FIR filter should has more less Amplitude Characteristic
 
-  signal tbPhsInc_hf : std_logic_vector(31 downto 0) := x"03B645A1";
+  signal tbPhsInc_hf : std_logic_vector(31 downto 0) := x"051EB851";
   signal tbOutHfSignal : std_logic_vector(15 downto 0);
 
   -- Phase accumulator signals of DDS
-  signal tbPhsInc : std_logic_vector(31 downto 0) := x"03B645A1";
+  signal tbPhsInc : std_logic_vector(31 downto 0) := x"19999999";
   signal tbStep   : std_logic_vector(31 downto 0) := (others => '0');
 
   -- Input signals
@@ -68,8 +68,8 @@ architecture rtl of testbench is
   signal tbInFilterI : std_logic_vector(31 downto 0);
 
   -- Output signals of I and Q filter
-  signal tbOutFilterQ : std_logic_vector(49 downto 0);
-  signal tbOutFilterI : std_logic_vector(49 downto 0);
+  signal tbOutFilterQ : std_logic_vector(47 downto 0);
+  signal tbOutFilterI : std_logic_vector(47 downto 0);
 
   -- Internal testbench clock with 50 MHz frequency
   constant CLK_PERIOD : time := 20 ns;
