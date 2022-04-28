@@ -41,6 +41,16 @@ architecture rtl of testbench is
     );
   end component;
 
+  -- sqrt module
+  component sqrt96bit is
+    port (
+      I_CLK     : in std_logic;
+      I_RST     : in std_logic;
+      I_DATA    : in std_logic_vector(95 downto 0);
+      O_SQ_ROOT : out std_logic_vector(47 downto 0)
+    );
+  end component;
+
   -- Testbench signals
   signal tbClk : std_logic := '0';
   signal tbRst : std_logic := '1';
@@ -70,6 +80,10 @@ architecture rtl of testbench is
   -- Output signals of I and Q filter
   signal tbOutFilterQ : std_logic_vector(47 downto 0);
   signal tbOutFilterI : std_logic_vector(47 downto 0);
+
+  -- The square of the two componnents
+  signal tbQuadratureSum : std_logic_vector(95 downto 0);
+  signal tbAmplitudeEnvelop : std_logic_vector(47 downto 0);
 
   -- Internal testbench clock with 50 MHz frequency
   constant CLK_PERIOD : time := 20 ns;
@@ -121,31 +135,31 @@ begin
       O_FILTER => tbOutFilterQ
     );
 
+  ----------------------------------------------------------------
+  -- Instantiate Unit Under Test (UUT) of sqrt96bit block
+  ----------------------------------------------------------------
+  uut_sqrt_module : sqrt96bit
+    port map (
+      I_CLK => tbClk,
+      I_RST => tbRst,
+      I_DATA => tbQuadratureSum,
+      O_SQ_ROOT => tbAmplitudeEnvelop
+    );
+
   -- Format I quadrature component
   tbInFilterI <= std_logic_vector(signed(tbOutHfSignal) * signed(tbCos));
 
   -- Format Q quadrature component
   tbInFilterQ <= std_logic_vector(signed(tbOutHfSignal) * signed(tbSin));
-
-  --tbRealI <= real(to_integer(signed(tbOutFilterI)));
-  --tbRealQ <= real(to_integer(signed(tbOutFilterQ)));
-  --tbOutQuadratureReal <= sqrt(tbRealI**2 + tbRealQ**2);
-  --tbOutQuadratureSignal <= std_logic_vector(to_unsigned(integer(tbOutQuadratureReal), tbOutQuadratureSignal'length));
+  
+  -- QuadratureSum
+  tbQuadratureSum <= std_logic_vector(signed(tbOutFilterI) * signed(tbOutFilterI) +
+                     signed(tbOutFilterQ) * signed(tbOutFilterQ));
 
   -- @Goal: generate the clock & reset
   tbClk <= not(tbClk) after (CLK_PERIOD/2);
   tbRst <= '0' after 200 ns;
 
-  ----------------------------------------------------------------
-  -- Main testing process
-  ----------------------------------------------------------------
-  --process (tbClk, tbRst) is
-  --begin
-    --if (rising_edge(tbClk)) then
-      --tbPhsInc <= std_logic_vector(unsigned(tbPhsInc) + unsigned(tbStep));
-      --tbStep <= std_logic_vector(unsigned(tbStep) + to_unsigned(1, 32));
-    --end if;
-  --end process;
 
 end architecture rtl;
 
